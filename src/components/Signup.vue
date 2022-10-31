@@ -7,6 +7,7 @@
 
     Starting workDate
     <input type="date" id="refrenceDate" v-model="refrenceDateRef" @change="updateReferenceDate" />
+    <LvButton :push="true" :raised="true" :rounded="true" label="Submit" type="button" size="lg" />
 </template>
 
 
@@ -14,11 +15,12 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue';
 import LvInput from 'lightvue/input';
+import LvButton from 'lightvue/button';
 import { useConfigStore } from '@/stores/state';
 
 export default defineComponent({
     name: "Signup",
-    components: { LvInput },
+    components: { LvInput, LvButton },
     setup() {
         const store = useConfigStore();
         const authTokenRef = ref("");
