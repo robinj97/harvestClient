@@ -24,3 +24,10 @@ export const useConfigStore = defineStore("config", () => {
     const setReferenceDate = (newVal:string) => configObject.value.referenceDate = newVal;
     return {configObject,setAuthToken,setAccountId,setReferenceDate}
 })
+
+export function getConfigJSON() {
+    const configStore = useConfigStore();
+    const configObject = configStore.$state.configObject;
+    return JSON.stringify(configObject,null,4);
+
+}
