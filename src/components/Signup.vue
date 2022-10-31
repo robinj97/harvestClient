@@ -1,11 +1,12 @@
 <template>
-    <LvInput :bottom-bar="true" placeholder="auth token" help-text="the long authentication token"
-        label="Insert Auth Token" placeholder-color="#0000006B" v-model="authTokenRef" :value="authTokenRef"
-        @update:modelValue="updateAuthTokenVal()" />
+    <LvInput :bottom-bar="true" placeholder="auth token" label="Insert Auth Token" placeholder-color="#0000006B"
+        v-model="authTokenRef" :value="authTokenRef" @update:modelValue="updateAuthTokenVal()" />
 
-    <LvInput :bottom-bar="true" placeholder="account ID" help-text="Your Account ID" label="Insert Account ID"
-        placeholder-color="#0000006B" v-model="accountIdRef" :value="accountIdRef"
-        @update:modelValue="updateAccountIdVal()" />
+    <LvInput :bottom-bar="true" placeholder="account ID" label="Insert Account ID" placeholder-color="#0000006B"
+        v-model="accountIdRef" :value="accountIdRef" @update:modelValue="updateAccountIdVal()" />
+
+    Starting workDate
+    <input type="date" id="refrenceDate" v-model="refrenceDateRef" @change="updateReferenceDate" />
 </template>
 
 
@@ -22,22 +23,29 @@ export default defineComponent({
         const store = useConfigStore();
         const authTokenRef = ref("");
         const accountIdRef = ref("");
-
+        const refrenceDateRef = ref(store.$state.configObject.referenceDate);
         function updateAccountIdVal() {
             store.setAccountId(accountIdRef.value);
         }
         function updateAuthTokenVal() {
             store.setAuthToken(authTokenRef.value);
         }
+        function updateReferenceDate() {
+            store.setReferenceDate(refrenceDateRef.value);
+        }
 
 
-        const authTokenValComputed = computed(() => store.configObject.authToken);
+        const authTokenValComputed = computed(() => store.configObject?.headers?.Authorization);
+        const accountIdComputed = computed(() => store.configObject.headers['Harvest-Account-ID']);
         return {
             authTokenRef,
             accountIdRef,
+            refrenceDateRef,
             updateAuthTokenVal,
             updateAccountIdVal,
-            authTokenValComputed
+            updateReferenceDate,
+            authTokenValComputed,
+            accountIdComputed
         }
     }
 })
