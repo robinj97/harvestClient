@@ -9,7 +9,7 @@ export const useConfigStore = defineStore("config", () => {
             "Harvest-Account-ID": "12345678",
             "Authorization": "Bearer gucci.flipflops123123"
         },
-        "referenceDate": "2022-01-14",
+        "referenceDate": "2022-01-01",
         "referenceBalance": 0,
         "expectedWorkHoursPerDay": 7.5,
         "entriesToIgnore": [
@@ -19,10 +19,12 @@ export const useConfigStore = defineStore("config", () => {
             }
         ]
     }));
+    let balance = ref(0);
     const setAuthToken = (newVal:string) => configObject.value.headers['Authorization'] = newVal;
     const setAccountId = (newVal:string) => configObject.value.headers['Harvest-Account-ID'] = newVal;
     const setReferenceDate = (newVal:string) => configObject.value.referenceDate = newVal;
-    return {configObject,setAuthToken,setAccountId,setReferenceDate}
+    const setBalance = (newVal:any) => balance.value = newVal;
+    return {configObject,setAuthToken,setAccountId,setReferenceDate,balance,setBalance}
 })
 
 export function getConfigJSON() {
