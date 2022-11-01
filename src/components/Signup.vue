@@ -7,7 +7,8 @@
 
     Starting workDate
     <input type="date" id="refrenceDate" v-model="refrenceDateRef" @change="updateReferenceDate" />
-    <LvButton :push="true" :raised="true" :rounded="true" label="Submit" type="button" size="lg" />
+    <LvButton :push="true" :raised="true" :rounded="true" label="Submit" type="button" size="lg"
+        @click="getBalance()" />
 </template>
 
 
@@ -17,6 +18,7 @@ import { computed, defineComponent, ref } from 'vue';
 import LvInput from 'lightvue/input';
 import LvButton from 'lightvue/button';
 import { useConfigStore } from '@/stores/state';
+import { run } from '@/utils/mainFunctions';
 
 export default defineComponent({
     name: "Signup",
@@ -30,10 +32,14 @@ export default defineComponent({
             store.setAccountId(accountIdRef.value);
         }
         function updateAuthTokenVal() {
-            store.setAuthToken(authTokenRef.value);
+            const authString = "Bearer " + authTokenRef.value;
+            store.setAuthToken(authString);
         }
         function updateReferenceDate() {
             store.setReferenceDate(refrenceDateRef.value);
+        }
+        function getBalance() {
+            run();
         }
 
 
@@ -46,6 +52,7 @@ export default defineComponent({
             updateAuthTokenVal,
             updateAccountIdVal,
             updateReferenceDate,
+            getBalance,
             authTokenValComputed,
             accountIdComputed
         }

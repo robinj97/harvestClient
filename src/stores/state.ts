@@ -31,3 +31,4 @@ export function getConfigJSON() {
     return JSON.stringify(configObject,null,4);
 
 }
+
