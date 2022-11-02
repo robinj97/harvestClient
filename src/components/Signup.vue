@@ -10,9 +10,26 @@
         <input type="date" id="refrenceDate" v-model="refrenceDateRef" @change="updateReferenceDate" />
         <LvButton :push="true" :raised="true" :rounded="true" label="Submit" type="button" size="lg"
             @click="getBalance()" />
-
-        <div>
-
+    </div>
+    <div class="accordian-wrapper">
+        <div class="nav-list__category-wrap">
+            <div class="collapsible_catgory" @click="open1">
+                <div class="nav-list__category-label">
+                    <i class="light-icon-adjustments"></i>
+                    How do I get these values from Harvest?
+                </div>
+                <i :class="isOpenA ? 'light-icon-chevron-up' : 'light-icon-chevron-down'"></i>
+            </div>
+            <LvCollapsible :show="isOpenA">
+                <div class="collapisible--answer">
+                    <ol>
+                        <li>Go to this link <a href="https://id.getharvest.com/developers">here</a> </li>
+                        <li>Create a new Access Token with the name <strong>bounty</strong></li>
+                        <li>Copy <strong>Your token</strong> and <strong>Account ID</strong></li>
+                        <li>Paste into website and hit submit</li>
+                    </ol>
+                </div>
+            </LvCollapsible>
         </div>
     </div>
 
@@ -40,6 +57,7 @@ export default defineComponent({
         const store = useConfigStore();
         const authTokenRef = ref("");
         const accountIdRef = ref("");
+        const isOpenA = ref(false);
         const refrenceDateRef = ref(store.$state.configObject.referenceDate);
         function updateAccountIdVal() {
             store.setAccountId(accountIdRef.value);
@@ -59,6 +77,10 @@ export default defineComponent({
         }
         function noBalance() {
             return balanceFromState.value < 0;;
+        }
+        function open1() {
+            isOpenA.value = !isOpenA.value;
+
         }
         const authTokenValComputed = computed(() => store.configObject?.headers?.Authorization);
         const accountIdComputed = computed(() => store.configObject.headers['Harvest-Account-ID']);
@@ -83,9 +105,17 @@ export default defineComponent({
             accountIdComputed,
             balanceFromState,
             isBalance,
+            isOpenA,
+            open1,
 
         }
     }
 })
 </script>
+<style lang="scss">
+.accordian-wrapper {
+    width: 100%;
+    align-content: space-around;
+}
+</style>
 
