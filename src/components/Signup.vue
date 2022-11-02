@@ -37,7 +37,7 @@
     </div>
 
     <div v-if="isBalance">
-        {{ balanceFromState }}
+        Flex hours total: {{ balanceFromState }}
     </div>
 
 </template>
