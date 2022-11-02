@@ -23,8 +23,9 @@ export const useConfigStore = defineStore("config", () => {
     const setAuthToken = (newVal:string) => configObject.value.headers['Authorization'] = newVal;
     const setAccountId = (newVal:string) => configObject.value.headers['Harvest-Account-ID'] = newVal;
     const setReferenceDate = (newVal:string) => configObject.value.referenceDate = newVal;
+    const setReferenceBalance = (newVal:number) => configObject.value.referenceBalance = newVal;
     const setBalance = (newVal:any) => balance.value = newVal;
-    return {configObject,setAuthToken,setAccountId,setReferenceDate,balance,setBalance}
+    return {configObject,setAuthToken,setAccountId,setReferenceDate,balance,setBalance,setReferenceBalance}
 })
 
 export function getConfigJSON() {

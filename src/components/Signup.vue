@@ -5,8 +5,11 @@
 
         <LvInput :bottom-bar="true" placeholder="account ID" label="Insert Account ID" placeholder-color="#0000006B"
             v-model="accountIdRef" :value="accountIdRef" @update:modelValue="updateAccountIdVal()" />
+        <LvInput :bottom-bar="true" placeholder="Balance at given date" label="Insert reference balance"
+            placeholder-color="#0000006B" v-model="referenceBalance" :value="referenceBalance"
+            @update:modelValue="updateReferenaceBalance()" />
 
-        Starting workDate
+        Reference date
         <input type="date" id="refrenceDate" v-model="refrenceDateRef" @change="updateReferenceDate" />
         <LvButton :push="true" :raised="true" :rounded="true" label="Submit" type="button" size="lg"
             @click="getBalance()" />
@@ -58,6 +61,7 @@ export default defineComponent({
         const store = useConfigStore();
         const authTokenRef = ref("");
         const accountIdRef = ref("");
+        const referenceBalance = ref(store.$state.configObject.referenceBalance);
         const isOpenA = ref(false);
         const refrenceDateRef = ref(store.$state.configObject.referenceDate);
         function updateAccountIdVal() {
@@ -69,6 +73,9 @@ export default defineComponent({
         }
         function updateReferenceDate() {
             store.setReferenceDate(refrenceDateRef.value);
+        }
+        function updateReferenaceBalance() {
+            store.setReferenceBalance(parseInt(referenceBalance.value));
         }
         function getBalance() {
             run().then(retVal => {
@@ -108,6 +115,8 @@ export default defineComponent({
             isBalance,
             isOpenA,
             open1,
+            referenceBalance,
+            updateReferenaceBalance,
 
         }
     }
