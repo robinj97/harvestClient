@@ -117,6 +117,7 @@ export default defineComponent({
 .accordian-wrapper {
     width: 100%;
     align-content: space-around;
+    padding-left: 50px;
 }
 </style>
 
