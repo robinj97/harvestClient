@@ -11,7 +11,7 @@
         <LvButton :push="true" :raised="true" :rounded="true" label="Submit" type="button" size="lg"
             @click="getBalance()" />
     </div>
-    <div class="accordian-wrapper" src="light-icons/dist/light-icon.css">
+    <div v-if="noBalance() && !isBalance" class="accordian-wrapper" src="light-icons/dist/light-icon.css">
         <div class="nav-list__category-wrap">
             <div class="collapsible_catgory" @click="open1">
                 <div class="nav-list__category-label">
