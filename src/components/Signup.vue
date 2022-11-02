@@ -11,14 +11,14 @@
         <LvButton :push="true" :raised="true" :rounded="true" label="Submit" type="button" size="lg"
             @click="getBalance()" />
     </div>
-    <div class="accordian-wrapper">
+    <div class="accordian-wrapper" src="light-icons/dist/light-icon.css">
         <div class="nav-list__category-wrap">
             <div class="collapsible_catgory" @click="open1">
                 <div class="nav-list__category-label">
-                    <i class="light-icon-adjustments"></i>
                     How do I get these values from Harvest?
+                    <i :class="isOpenA ? 'light-icon-chevron-up' : 'light-icon-chevron-down'"></i>
                 </div>
-                <i :class="isOpenA ? 'light-icon-chevron-up' : 'light-icon-chevron-down'"></i>
+
             </div>
             <LvCollapsible :show="isOpenA">
                 <div class="collapisible--answer">
@@ -49,6 +49,7 @@ import LvBadge from 'lightvue/badge';
 import LvCollapsible from 'lightvue/collapsible';
 import { useConfigStore } from '@/stores/state';
 import { run } from '@/utils/mainFunctions';
+import "light-icons/dist/light-icon.css";
 
 export default defineComponent({
     name: "Signup",
