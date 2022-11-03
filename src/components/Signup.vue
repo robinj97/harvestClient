@@ -61,7 +61,7 @@ export default defineComponent({
         const store = useConfigStore();
         const authTokenRef = ref("");
         const accountIdRef = ref("");
-        const referenceBalance = ref(store.$state.configObject.referenceBalance);
+        const referenceBalance = ref("");
         const isOpenA = ref(false);
         const refrenceDateRef = ref(store.$state.configObject.referenceDate);
         function updateAccountIdVal() {
@@ -75,7 +75,7 @@ export default defineComponent({
             store.setReferenceDate(refrenceDateRef.value);
         }
         function updateReferenaceBalance() {
-            store.setReferenceBalance(parseInt(referenceBalance.value));
+            store.setReferenceBalance(parseFloat(referenceBalance.value));
         }
         function getBalance() {
             run().then(retVal => {
