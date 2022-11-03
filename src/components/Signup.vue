@@ -75,7 +75,7 @@ export default defineComponent({
             store.setReferenceDate(refrenceDateRef.value);
         }
         function updateReferenaceBalance() {
-            store.setReferenceBalance(parseFloat(referenceBalance.value));
+            store.setReferenceBalance(parseFloat(referenceBalance.value.replace(",", ".")));
         }
         function getBalance() {
             run().then(retVal => {
