@@ -11,6 +11,12 @@
 
         Reference date
         <input type="date" id="refrenceDate" v-model="refrenceDateRef" @change="updateReferenceDate" />
+        
+        <LvInput :bottom-bar="true" placeholder="Work hours per day" label="Insert work hours per day"
+            placeholder-color="#0000006B" v-model="refWorkHoursPerDay" :value="refWorkHoursPerDay"
+            @update:modelValue="updateWorkHoursPerDay()" />
+
+
         <LvButton :push="true" :raised="true" :rounded="true" label="Submit" type="button" size="lg"
             @click="getBalance()" />
     </div>
@@ -62,6 +68,7 @@ export default defineComponent({
         const authTokenRef = ref("");
         const accountIdRef = ref("");
         const referenceBalance = ref("");
+        const refWorkHoursPerDay = ref(store.$state.configObject.expectedWorkHoursPerDay);
         const isOpenA = ref(false);
         const refrenceDateRef = ref(store.$state.configObject.referenceDate);
         function updateAccountIdVal() {
@@ -76,6 +83,9 @@ export default defineComponent({
         }
         function updateReferenaceBalance() {
             store.setReferenceBalance(parseFloat(referenceBalance.value.replace(",", ".")));
+        }
+        function updateWorkHoursPerDay() {
+            store.setExpectedWorkHoursPerDay(refWorkHoursPerDay.value);
         }
         function getBalance() {
             run().then(retVal => {
@@ -117,6 +127,8 @@ export default defineComponent({
             open1,
             referenceBalance,
             updateReferenaceBalance,
+            refWorkHoursPerDay,
+            updateWorkHoursPerDay
 
         }
     }

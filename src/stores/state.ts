@@ -25,7 +25,8 @@ export const useConfigStore = defineStore("config", () => {
     const setReferenceDate = (newVal:string) => configObject.value.referenceDate = newVal;
     const setReferenceBalance = (newVal:number) => configObject.value.referenceBalance = newVal;
     const setBalance = (newVal:any) => balance.value = newVal;
-    return {configObject,setAuthToken,setAccountId,setReferenceDate,balance,setBalance,setReferenceBalance}
+    const setExpectedWorkHoursPerDay = (newVal:number) => configObject.value.expectedWorkHoursPerDay = newVal;
+    return {configObject,setAuthToken,setAccountId,setReferenceDate,balance,setBalance,setReferenceBalance,setExpectedWorkHoursPerDay}
 })
 
 export function getConfigJSON() {
